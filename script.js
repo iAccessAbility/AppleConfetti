@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('confettiCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    canvas.style.backgroundColor = 'black';
-    
+    const body = document.body;
     let particles = [];
-    const numberOfConfetti = 400;
+    const numberOfConfettiPerBatch = 5; // Number of logos to create per interval
+    const creationIntervalTime = 100; // Interval in milliseconds (e.g., 100ms = 10 times per second)
+    const maxParticles = 150; // Optional: Limit the total number of particles
+    body.style.background = '#000';
     const appleLogoImages = [
         'apple-red.png',
         'apple-orange.png',
@@ -18,68 +17,55 @@ document.addEventListener('DOMContentLoaded', () => {
         'apple-gray.png',
         'apple-white.png'
     ];
-    const images = [];
 
-    function preloadImages() {
-        appleLogoImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
-            images.push(img);
-        });
-    }
-
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    function createConfetti() {
-        for (let i = 0; i < numberOfConfetti; i++) {
-            const randomImageIndex = Math.floor(Math.random() * images.length);
-            const image = images[randomImageIndex];
-            const size = Math.random() * 30 + 80; // Vary the size
-
+    function createConfettiBatch(count) {
+        for (let i = 0; i < count; i++) {
+            if (particles.length >= maxParticles) { // Optional: Limit total particles
+                return;
+            }
+            const img = document.createElement('img');
+            const horizontalStart = Math.random() * (window.innerWidth + 200) - 100;
+            img.src = appleLogoImages[Math.floor(Math.random() * appleLogoImages.length)];
+            img.classList.add('confetti-particle');
+            img.style.width = `100px`;
+            img.style.height = `100px`;
+            img.style.left = `${horizontalStart}px`;
+            img.style.top = `${-200 - Math.random() * 150}px`;
+            img.style.transform = `rotate(${Math.random() * 360}deg)`;
+            img.style.position = 'fixed';
+            body.appendChild(img);
             particles.push({
-                x: Math.random() * canvas.width,
-                y: -size,
-                image: image,
-                size: size,
-                speed: Math.random() * 3 + 2,
-                rotation: Math.random() * Math.PI * 2,
+                element: img,
+                speed: Math.random() * 10 + 8,
                 rotationSpeed: (Math.random() - 0.5) * 0.1,
-                drift: (Math.random() - 0.5) * 5
+                drift: (Math.random() - 0.9) * 2
             });
         }
     }
 
-    function drawConfetti() {
-        ctx.fillStyle = 'black'; // Set the fill color to black
-        ctx.fillRect(0, 0, canvas.width, canvas.height); // Draw a black rectangle covering the canvas
-        
-        particles.forEach(particle => {
-            ctx.save();
-            ctx.translate(particle.x, particle.y);
-            ctx.rotate(particle.rotation);
-            ctx.drawImage(particle.image, -particle.size / 2, -particle.size / 2, particle.size, particle.size);
-            ctx.restore();
+    function updateConfetti() {
+        particles.forEach((particle, index) => {
+            const currentTop = parseFloat(particle.element.style.top) || -200;
+            particle.element.style.top = `${currentTop + particle.speed}px`;
 
-            particle.y += particle.speed;
-            particle.x += particle.drift;
-            particle.rotation += particle.rotationSpeed;
-
-            if (particle.y > canvas.height + particle.size) {
-                particle.y = -particle.size;
-                particle.x = Math.random() * canvas.width;
-                particle.rotation = Math.random() * Math.PI * 2;
+            if (currentTop > window.innerHeight + 10) {
+                particle.element.remove();
+                particles.splice(index, 1);
             }
         });
-        requestAnimationFrame(drawConfetti);
+
+        requestAnimationFrame(updateConfetti);
     }
 
-    window.addEventListener('resize', resizeCanvas);
+    function startConfetti() {
+        // Start the timer to create confetti batches
+        setInterval(() => {
+            createConfettiBatch(numberOfConfettiPerBatch);
+        }, creationIntervalTime);
 
-    resizeCanvas();
-    preloadImages(); // Load images before starting
-    createConfetti(); // Create initial confetti
-    drawConfetti(); // Start animation immediately
+        // Start the animation loop for existing particles
+        updateConfetti();
+    }
+
+    startConfetti();
 });
