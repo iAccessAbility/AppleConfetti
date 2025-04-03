@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     let particles = [];
-    const numberOfConfettiPerBatch = 5; // Number of logos to create per interval
-    const creationIntervalTime = 100; // Interval in milliseconds (e.g., 100ms = 10 times per second)
-    const maxParticles = 150; // Optional: Limit the total number of particles
+    const numberOfConfettiPerBatch = 5;
+    const creationIntervalTime = 100;
+    const maxParticles = 150;
     body.style.background = '#000';
     const appleLogoImages = [
         'apple-red.png',
