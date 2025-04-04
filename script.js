@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     let particles = [];
-    const numberOfConfettiPerBatch = 5;
-    const creationIntervalTime = 100;
-    const maxParticles = 200;
+    let numberOfConfettiPerBatch = 5;
+    let creationIntervalTime = 100;
+    let maxParticles = 200;
     body.style.background = '#000';
     const appleLogoImages = [
         'apple-red.png',
@@ -18,7 +18,46 @@ document.addEventListener('DOMContentLoaded', () => {
         'apple-white.png'
     ];
 
+    const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    const smallScreenWidthThreshold = 300;
+
+    if (screenWidth < smallScreenWidthThreshold) {
+        numberOfConfettiPerBatch = 2;
+        maxParticles = 50;
+    }
+
+    const mainTitle = document.createElement('h1');
+    mainTitle.textContent = "WWDC25";
+    mainTitle.id = 'mainTitle';
+    mainTitle.style.position = 'fixed';
+    mainTitle.style.display = 'block';
+    mainTitle.style.top = '30%';
+    mainTitle.style.left = '50%';
+    mainTitle.style.textAlign = 'center';
+    mainTitle.style.transform = 'translate(-50%, -50%)';
+    mainTitle.style.fontFamily = 'Arial';
+    mainTitle.style.color = 'white';
+    mainTitle.style.fontSize = '3em';
+    body.appendChild(mainTitle);
+    
+    const secondaryText = document.createElement('p');
+    secondaryText.textContent = "Jun. 9 - 13";
+    secondaryText.id = 'mainTitle';
+    secondaryText.style.position = 'fixed';
+    secondaryText.style.display = 'block';
+    secondaryText.style.top = '35%';
+    secondaryText.style.left = '50%';
+    secondaryText.style.textAlign = 'center';
+    secondaryText.style.transform = 'translate(-50%, -50%)';
+    secondaryText.style.fontFamily = 'Arial';
+    secondaryText.style.color = 'white';
+    secondaryText.style.fontSize = '2em';
+    body.appendChild(secondaryText);
+
     function createConfettiBatch(count) {
+        const titleElement = document.getElementById('mainTitle');
+        const titleZIndex = titleElement ? parseInt(titleElement.style.zIndex) || 0 : 0; // Get text z-index or default to 0
+        
         for (let i = 0; i < count; i++) {
             if (particles.length >= maxParticles) { // Optional: Limit total particles
                 return;
@@ -34,6 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
             img.style.transform = `rotate(${Math.random() * 360}deg)`;
             img.style.position = 'fixed';
             body.appendChild(img);
+            
+            const randomNumber = Math.random();
+            if (randomNumber < 0.5) {
+                img.style.zIndex = titleZIndex - 1;
+            } else if (randomNumber < 0.7) {
+                img.style.zIndex = titleZIndex;
+            } else {
+                img.style.zIndex = titleZIndex + 1;
+            }
+            
             particles.push({
                 element: img,
                 speed: Math.random() * 5 + 5,
@@ -70,4 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startConfetti();
+    // Control the z-index to place the h1 behind or in front
+    const titleElement = document.getElementById('mainTitle');
+    if (titleElement) {
+        // To put the h1 behind the logos:
+        // titleElement.style.zIndex = '-1';
+
+        // To put the h1 in front of the logos (default):
+        titleElement.style.zIndex = '-1'; // Or any positive number
+    }
 });
