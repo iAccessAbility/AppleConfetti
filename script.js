@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const smallScreenWidthThreshold = 300;
+    const smallScreenWidthThreshold = 400;
 
     if (screenWidth < smallScreenWidthThreshold) {
         numberOfConfettiPerBatch = 2;
