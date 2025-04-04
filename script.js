@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
             body.appendChild(img);
             particles.push({
                 element: img,
-                speed: Math.random() * 8 + 8,
-                rotationSpeed: (Math.random() - 0.5) * 0.1,
+                speed: Math.random() * 5 + 5,
+                rotationSpeed: (Math.random() - 0.9) * 5,
                 drift: (Math.random() - 0.9) * 2
             });
         }
@@ -47,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         particles.forEach((particle, index) => {
             const currentTop = parseFloat(particle.element.style.top) || -200;
             particle.element.style.top = `${currentTop + particle.speed}px`;
+            particle.currentRotation = (particle.currentRotation || 0) + particle.rotationSpeed;
+            particle.element.style.transform = `rotate(${particle.currentRotation}deg)`;
 
             if (currentTop > window.innerHeight + 10) {
                 particle.element.remove();
