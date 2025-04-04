@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const smallScreenWidthThreshold = 400;
     const audioElement = new Audio("audio.mp3");
+    let isPlaying = false;
     audioElement.autoplay = true;
     audioElement.loop = false;
     audioElement.mute = false;
@@ -39,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', handleFirstInteraction);
     document.addEventListener('touchstart', handleFirstInteraction);
 
-    
     const mainTitle = document.createElement('h1');
     mainTitle.textContent = "WWDC25";
     mainTitle.id = 'mainTitle';
@@ -76,7 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
     footerText.style.fontFamily = 'Arial';
     footerText.style.color = '#ddd';
     body.appendChild(footerText);
-
+    
+    footerText.addEventListener('click', () => {
+        if (isPlaying) {
+            audioElement.pause();
+            footerText.textContent = 'Play Music';
+        } else {
+            audioElement.play().catch(error => {
+                console.error("Failed to Play Music:", error);
+                footerText.textContent = 'Play Failed';
+            });
+            footerText.textContent = 'Pause Music';
+        }
+        isPlaying = !isPlaying;
+    });
+    
     if (screenWidth < smallScreenWidthThreshold) {
         numberOfConfettiPerBatch = 2;
         maxParticles = 50;
