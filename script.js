@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const smallScreenWidthThreshold = 400;
+    
+    const audioElement = new Audio("audio.mp3");
+    audioElement.autoplay = true;
+    audioElement.loop = false;
+    audioElement.mute = false;
+    body.appendChild(audioElement);
 
     const mainTitle = document.createElement('h1');
     mainTitle.textContent = "WWDC25";
@@ -48,6 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
     secondaryText.style.color = 'white';
     secondaryText.style.fontSize = '2em';
     body.appendChild(secondaryText);
+    
+    const footerText = document.createElement('footer');
+    footerText.textContent = "♫ Staart Up - A. J. Cook ♫";
+    footerText.style.position = 'fixed';
+    footerText.style.top = '97%';
+    footerText.style.textAlign = 'center';
+    footerText.style.fontFamily = 'Arial';
+    footerText.style.color = '#ddd';
+    body.appendChild(footerText);
 
     if (screenWidth < smallScreenWidthThreshold) {
         numberOfConfettiPerBatch = 2;
@@ -112,12 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startConfetti() {
-        // Start the timer to create confetti batches
         setInterval(() => {
             createConfettiBatch(numberOfConfettiPerBatch);
         }, creationIntervalTime);
 
-        // Start the animation loop for existing particles
         updateConfetti();
     }
 
@@ -125,10 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Control the z-index to place the h1 behind or in front
     const titleElement = document.getElementById('mainTitle');
     if (titleElement) {
-        // To put the h1 behind the logos:
-        // titleElement.style.zIndex = '-1';
-
-        // To put the h1 in front of the logos (default):
-        titleElement.style.zIndex = '-1'; // Or any positive number
+        titleElement.style.zIndex = '-1'; 
     }
 });
