@@ -20,13 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const smallScreenWidthThreshold = 400;
-    
     const audioElement = new Audio("audio.mp3");
     audioElement.autoplay = true;
     audioElement.loop = false;
     audioElement.mute = false;
     body.appendChild(audioElement);
 
+    function handleFirstInteraction() {
+        audioElement.muted = false;
+        audioElement.play().catch(error => {
+            console.error("Audio play failed after interaction:", error);
+        });
+        document.removeEventListener('click', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction);
+    }
+
+    // Add event listeners for the first user interaction
+    document.addEventListener('click', handleFirstInteraction);
+    document.addEventListener('touchstart', handleFirstInteraction);
+
+    
     const mainTitle = document.createElement('h1');
     mainTitle.textContent = "WWDC25";
     mainTitle.id = 'mainTitle';
@@ -127,10 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startConfetti() {
+        // Start the timer to create confetti batches
         setInterval(() => {
             createConfettiBatch(numberOfConfettiPerBatch);
         }, creationIntervalTime);
 
+        // Start the animation loop for existing particles
         updateConfetti();
     }
 
@@ -138,6 +153,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Control the z-index to place the h1 behind or in front
     const titleElement = document.getElementById('mainTitle');
     if (titleElement) {
-        titleElement.style.zIndex = '-1'; 
+        // To put the h1 behind the logos:
+        // titleElement.style.zIndex = '-1';
+
+        // To put the h1 in front of the logos (default):
+        titleElement.style.zIndex = '-1'; // Or any positive number
     }
 });
