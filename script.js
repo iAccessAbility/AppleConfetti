@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    const smallScreenWidthThreshold = 340;
+    const smallScreenWidthThreshold = 345;
     const audioElement = new Audio("audio.mp3");
     let isPlaying = false;
     audioElement.autoplay = true;
@@ -94,9 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (screenWidth < smallScreenWidthThreshold) {
         numberOfConfettiPerBatch = 2;
         maxParticles = 50;
-        mainTitle.style.fontSize = '1em';
-        secondaryText.style.top = '32%';
-        secondaryText.style.fontSize = '0.5em';
+        mainTitle.style.left = '50%';
+        mainTitle.style.fontSize = '1.5em';
+        secondaryText.style.top = '37%';
+        secondaryText.style.fontSize = '0.9em';
+        footerText.style.top = '75%';
     }
 
     function createConfettiBatch(count) {
