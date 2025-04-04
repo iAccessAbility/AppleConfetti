@@ -21,11 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     const smallScreenWidthThreshold = 400;
 
-    if (screenWidth < smallScreenWidthThreshold) {
-        numberOfConfettiPerBatch = 2;
-        maxParticles = 50;
-    }
-
     const mainTitle = document.createElement('h1');
     mainTitle.textContent = "WWDC25";
     mainTitle.id = 'mainTitle';
@@ -53,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
     secondaryText.style.color = 'white';
     secondaryText.style.fontSize = '2em';
     body.appendChild(secondaryText);
+
+    if (screenWidth < smallScreenWidthThreshold) {
+        numberOfConfettiPerBatch = 2;
+        maxParticles = 50;
+        mainTitle.style.fontSize = '2em';
+        secondaryText.style.top = '34%';
+        secondaryText.style.fontSize = '1em';
+    }
 
     function createConfettiBatch(count) {
         const titleElement = document.getElementById('mainTitle');
