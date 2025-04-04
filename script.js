@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let particles = [];
     const numberOfConfettiPerBatch = 5;
     const creationIntervalTime = 100;
-    const maxParticles = 150;
+    const maxParticles = 200;
     body.style.background = '#000';
     const appleLogoImages = [
         'apple-red.png',
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             body.appendChild(img);
             particles.push({
                 element: img,
-                speed: Math.random() * 10 + 8,
+                speed: Math.random() * 8 + 8,
                 rotationSpeed: (Math.random() - 0.5) * 0.1,
                 drift: (Math.random() - 0.9) * 2
             });
