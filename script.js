@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body.appendChild(secondaryText);
     
     const footerText = document.createElement('footer');
-    footerText.textContent = "♫ Staart Up - A. J. Cook ♫";
+    footerText.textContent = "♫ Start Up - A. J. Cook ♫";
     footerText.style.position = 'fixed';
     footerText.style.top = '97%';
     footerText.style.textAlign = 'center';
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     footerText.style.color = '#ddd';
     body.appendChild(footerText);
     
-    footerText.addEventListener('click', () => {
+    footerText.addEventListener('touchstart', () => {
         if (isPlaying) {
             audioElement.pause();
             footerText.textContent = 'Play Music';
