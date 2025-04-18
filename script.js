@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             particle.currentRotation = (particle.currentRotation || 0) + particle.rotationSpeed;
             particle.element.style.transform = `rotate(${particle.currentRotation}deg)`;
 
-            if (currentTop > window.innerHeight + 10) {
+            if (currentTop > window.innerHeight + 5) {
                 particle.element.remove();
                 particles.splice(index, 1);
             }
