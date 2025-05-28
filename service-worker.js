@@ -11,7 +11,9 @@ const FILES_TO_CACHE = [
   '/apple-white.png',
   '/apple-yellow.png',
   '/audio.mp3',
-  '/script.js'
+  '/script.js',
+  '/index.html',
+  '/style.html'
 ];
 
 // Install and cache files
