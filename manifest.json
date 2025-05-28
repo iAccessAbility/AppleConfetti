@@ -1,0 +1,8 @@
+{
+  "name": "iAccessAbility Support Articles",
+  "short_name": "Support Articles",
+  "start_url": "/html/support-articles.html",
+  "display": "standalone",
+  "background_color": "#000",
+  "theme_color": "111"
+}
