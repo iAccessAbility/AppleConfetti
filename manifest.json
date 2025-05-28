@@ -1,7 +1,7 @@
 {
   "name": "Apple Confetti",
   "short_name": "Apple Confetti",
-  "start_url": "/index",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#000"
 }
