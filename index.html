@@ -19,6 +19,9 @@
         <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="apple-white.png">
         <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="apple-white.png">
         <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="apple-white.png">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="apple-mobile-web-app-title" content="AppleConfetti">
         <title>Apple Confetti</title>
         <link rel="stylesheet" href="style.css">
         <link rel="manifest" href="/manifest.json">
@@ -27,7 +30,7 @@
         <script src="script.js"></script>
         <script>
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('service-worker.js', { scope: '/' })
                 .then(reg => console.log('Service worker registered:', reg))
                 .catch(err => console.error('Service worker registration failed:', err));
             }

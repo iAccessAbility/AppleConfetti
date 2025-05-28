@@ -103,10 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createConfettiBatch(count) {
         const titleElement = document.getElementById('mainTitle');
-        const titleZIndex = titleElement ? parseInt(titleElement.style.zIndex) || 0 : 0; // Get text z-index or default to 0
+        const titleZIndex = titleElement ? parseInt(titleElement.style.zIndex) || 0 : 0;
         
         for (let i = 0; i < count; i++) {
-            if (particles.length >= maxParticles) { // Optional: Limit total particles
+            if (particles.length >= maxParticles) {
                 return;
             }
             const img = document.createElement('img');
@@ -156,23 +156,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startConfetti() {
-        // Start the timer to create confetti batches
         setInterval(() => {
             createConfettiBatch(numberOfConfettiPerBatch);
         }, creationIntervalTime);
-
-        // Start the animation loop for existing particles
         updateConfetti();
     }
-
     startConfetti();
-    // Control the z-index to place the h1 behind or in front
     const titleElement = document.getElementById('mainTitle');
     if (titleElement) {
-        // To put the h1 behind the logos:
-        // titleElement.style.zIndex = '-1';
-
-        // To put the h1 in front of the logos (default):
-        titleElement.style.zIndex = '-1'; // Or any positive number
+         titleElement.style.zIndex = '-1';
     }
 });
