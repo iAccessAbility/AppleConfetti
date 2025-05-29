@@ -1,5 +1,6 @@
 const CACHE_NAME = 'apple-confetti-v1';
 const FILES_TO_CACHE = [
+  '/apple-color.PNG',
   '/apple-blue.png',
   '/apple-gray.png',
   '/apple-green.png',
