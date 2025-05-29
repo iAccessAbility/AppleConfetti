@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchstart', handleFirstInteraction);
 
     const mainTitle = document.createElement('h1');
-    mainTitle.textContent = "WWDC25";
+    mainTitle.textContent = "WWDC25";
     mainTitle.id = 'mainTitle';
     mainTitle.style.position = 'fixed';
     mainTitle.style.display = 'block';
