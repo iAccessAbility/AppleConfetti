@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Leah Dykema">
+        <meta name="theme-color" content="#8bc3ff" id="theme-color-meta">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>404 Error at iAccessAbility</title>
+        <link rel="shortcut icon" type="image/x-icon" href="https://iaccessabilityservices.com/img/favicon.ico">
+        <link rel="apple-touch-icon" type="image/x-icon" href="https://iaccessabilityservices.com/img/logo-sad.svg">
+        <link rel="stylesheet" href="https://iaccessabilityservices.com/stylesheets/accessibility.css">
+        <style>
+            /* All */
+            *,
+            *::after,
+            *::before {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: arial;
+            }
+
+            /* All */
+            .mobile-header,
+            .mobile-logo img {
+                display: none;
+            }
+
+            .nav-container {
+                top: 0;
+                height: 44px;
+                width: 100%;
+            }
+
+            .desktop-nav {
+                display: flex;
+                margin: 0 auto;
+                justify-content: space-between;
+                align-items: center;
+                left: 0;
+                right: 0;
+                height: 44px;
+                max-width: 800px;
+                list-style: none;
+            }
+
+            .desktop-nav li {
+                margin: 0 auto;
+                padding: 0;
+                max-width: 1200px;
+            }
+
+            nav .desktop-nav li a {
+                text-decoration: none;
+                font-size: 20px;
+                transition: all 400ms ease;
+            }
+
+            /* Desktop Nav Animation */
+            .desktop-nav li {
+                transition: all 400ms ease;
+            }
+
+            /* mobile */
+            .logo-container {
+                display: flex;
+                align-items: center;
+            }
+
+            /* Menu Container */
+            .menu-icon-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 12px;
+                align-items: center;
+                cursor: pointer;
+                z-index: 999;
+            }
+
+            .menu-line {
+                height: 2px;
+                width: 30px;
+                border-radius: 3px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .menu-toggle[aria-expanded="true"] .menu-line:nth-child(1) {
+                transform: rotate(45deg) translateY(7px);
+            }
+
+            .menu-toggle[aria-expanded="true"] .menu-line:nth-child(2) {
+                transform: rotate(-46deg) translateY(-7px);
+            }
+
+            .mobile-nav {
+                list-style: none;
+                position: fixed;
+                width: 100%;
+                top: 44px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                padding-left: 30px;
+                padding-right: 30px;
+                flex-direction: column;
+                z-index: 299;
+                clip-path: inset(0 0 100% 0);
+                visibility: hidden;
+                transition: clip-path 400ms ease, visibility 0s linear 300ms;
+            }
+
+            .mobile-nav li {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                width: 100%;
+            }
+
+            .mobile-nav li a {
+                display: block;
+                font-size: 25px;
+                width: 100%;
+            }
+
+            /* Show when active */
+            .mobile-nav.open {
+                clip-path: inset(0 0 0 0);
+                opacity: 1;
+                visibility: visible;
+                transition: clip-path 400ms ease, visibility 0s linear 0ms;
+            }
+
+            .menu-toggle {
+                background: none;
+                border: none;
+                height: 44px;
+                width: 44px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .name {
+                margin-left: 15px;
+                padding: 0;
+                font-size: 20px;
+            }
+
+            .mobile-nav li:last-child {
+                border-bottom: none;
+            }
+
+            /* logo */
+            .link-logo {
+                display: block;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                transition: all 400ms ease;
+            }
+
+            .logo-dino {
+                transition: all 400ms ease;
+            }
+
+            a {
+                text-decoration: none;
+                transition: all 400ms ease;
+            }
+
+            #return-home-container {
+                transition: transform 0.6s ease, opacity 0.6s ease;
+            }
+
+            #return-home-link {
+                transition: transform 0.5s ease, margin-top 0.5s ease;
+            }
+
+            #delayed-paragraph-container {
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+                transition: max-height 0.6s ease, opacity 0.6s ease;
+            }
+
+            #delayed-paragraph-container.expanded {
+                max-height: 200px;
+                opacity: 1;
+            }
+
+            #delayed-paragraph-container h3 {
+                margin: 0;
+                margin-bottom: 20px;
+                padding: 0.5em 0;
+                font-weight: 300;
+                color: #999;
+            }
+
+            @media (hover: hover) {
+                .logo-dino:hover,
+                .logo-dino:focus,
+                .link-logo:hover,
+                .link-logo:focus {
+                    scale: 1.3;
+                }
+
+                a:hover,
+                a:focus {
+                    color: #8bc3ff;
+                }
+            }
+
+            /* Dark theme */
+            @media (prefers-color-scheme: dark) {
+                body {
+                    background-color: #000;
+                }
+
+                .nav-container,
+                .desktop-nav,
+                .mobile-header,
+                .mobile-nav {
+                    background: #222;
+                }
+
+                .mobile-nav {
+                    border-top: 2px solid rgba(255, 255, 255, 0.1);
+                }
+
+                .mobile-nav li {
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+                }
+
+                .menu-line {
+                    background-color: #fff;
+                }
+
+                .desktop-nav a,
+                .mobile-nav a,
+                .name {
+                    color: #fff;
+                }
+
+                .site {
+                    background-color: #000;
+                    color: #fff;
+                    margin-top: 44px;
+                    margin-bottom: 60px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    max-width: 500px;
+                    text-align: center;
+                    overflow-wrap: break-word;
+                }
+
+                a.link {
+                    color: #8bc3ff;
+                    text-decoration: none;
+                    transition: 200ms ease all;
+                }
+
+                @media (hover: hover) {
+                    a.link:hover,
+                    a.link:focus,
+                    a.link:active {
+                        color: #0063cc;
+                        text-decoration: underline;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    /* Mobile header layout */
+                    .mobile-header {
+                        display: flex;
+                        position: fixed;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: 44px;
+                        width: 100%;
+                        padding: 0 16px;
+                    }
+
+                    .mobile-logo img {
+                        display: block;
+                        height: 44px;
+                        width: auto;
+                        transition: all 400ms ease;
+                    }
+
+                    .mobile-logo:hover,
+                    .mobile-logo:focus {
+                        scale: 1.3;
+                    }
+
+                    /* hide desktop navigation bar */
+                    nav .desktop-nav {
+                        display: none;
+                    }
+
+                    .site {
+                        margin-left: 3em;
+                        margin-right: 3em;
+                    }
+                }
+            }
+
+            /* Light theme */
+            @media (prefers-color-scheme: light) {
+                body {
+                    background-color: #fff;
+                }
+
+                .nav-container,
+                .desktop-nav,
+                .mobile-header,
+                .mobile-nav {
+                    background: #eee;
+                }
+
+                .mobile-nav {
+                    border-top: 2px solid rgba(0, 0, 0, 0.1);
+                }
+
+                .menu-line {
+                    background-color: #000;
+                }
+
+                .desktop-nav a,
+                .mobile-nav a,
+                .name {
+                    color: #000;
+                }
+
+                .mobile-nav li {
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                }
+
+                .site {
+                    background-color: #fff;
+                    color: #000;
+                    margin-top: 44px;
+                    margin-left: 20em;
+                    margin-right: 20em;
+                    text-align: center;
+                    overflow-wrap: break-word;
+                }
+
+                a.link {
+                    color: #0000ff;
+                    text-decoration: none;
+                    transition: 200ms ease all;
+                }
+
+                @media (hover: hover) {
+                    a.link:hover,
+                    a.link:focus,
+                    a.link:active {
+                        color: #0063cc;
+                        text-decoration: underline;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    /* Mobile header layout */
+                    .mobile-header {
+                        display: flex;
+                        position: fixed;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: 44px;
+                        width: 100%;
+                        padding: 0 16px;
+                    }
+
+                    .mobile-logo img {
+                        display: block;
+                        height: 44px;
+                        width: auto;
+                        transition: all 400ms ease;
+                    }
+
+                    .mobile-logo:hover,
+                    .mobile-logo:focus {
+                        scale: 1.3;
+                    }
+
+                    /* hide desktop navigation bar */
+                    nav .desktop-nav {
+                        display: none;
+                    }
+
+                    .site {
+                        margin-left: 3em;
+                        margin-right: 3em;
+                    }
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <div class="nav-container" data-role="header" data-position="fixed">
+            <nav>
+                <!-- Top row: menu button on left, logo on right -->
+                <div class="mobile-header">
+                    <!-- iAccessAbility -->
+                    <div class="logo-container">
+                        <a href="https://iaccessabilityservices.com" aria-label="Home"><img class="link-logo" src="https://iaccessabilityservices.com/img/logo-colored.svg" alt="I Access Ability"></a>
+                        <a href="https://iaccessabilityservices.com" class="links"><h1 class="name" aria-label="I Access Ability">iAccessAbility</h1></a>
+                    </div>
+                    <!-- Mobile Menu Toggle Button -->
+                    <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">
+                        <span class="menu-icon-container">
+                            <span class="menu-line"></span>
+                            <span class="menu-line"></span>
+                        </span>
+                    </button>
+                </div>
+                <!-- Desktop Navigation -->
+                <ul class="desktop-nav">
+                    <li><a href="https://iaccessabilityservices.com"><img class="link-logo" src="https://iaccessabilityservices.com/img/logo-colored.svg" alt="I Access Ability"></a></li>
+                    <li><a href="https://iaccessabilityservices.com/news/">News</a></li>
+                    <li><a href="https://iaccessabilityservices.com/blog/">Blog</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/recommendations.html">Recommendations</a></li>
+                    <li><a href="https://support.iaccessabilityservices.com">Support</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/about.html">About</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/connect.html">Connect</a></li>
+                </ul>
+                <!-- Mobile Navigation (initially hidden) -->
+                <ul id="mobile-menu" class="mobile-nav" aria-hidden="true">
+                    <li><a href="https://iaccessabilityservices.com" tabindex="-1">Home</a></li>
+                    <li><a href="https://iaccessabilityservices.com/news/" tabindex="-1">News</a></li>
+                    <li><a href="https://iaccessabilityservices.com/blog/" tabindex="-1">Blog</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/recommendations.html" tabindex="-1">Recommendations</a></li>
+                    <li><a href="https://support.iaccessabilityservices.com" tabindex="-1">Support</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/about.html" tabindex="-1">About</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/connect.html" tabindex="-1">Connect</a></li>
+                </ul>
+            </nav>
+        </div>
+        <!-- 404 error Page -->
+        <main class="site">
+            <a href="https://iaccessabilityservices.com/html/dino.html" aria-label="Do you dare visit the dino?" tabindex="2"><img class="logo-dino" src="https://iaccessabilityservices.com/img/logo-sad.svg" aria-hidden="true" height="200" alt=""></a>
+            <h1>Oops&#33; This page failed to follow ADA compliance... now it&#39;s getting sued &#58;P</h1>
+            <br>
+            <h3>Looks like there&#39;s an issue with this link&#33; Double&#45;check the URL&#44; or if you think something&#39;s broken&#44; let us know so we can fix it <a class="link" href="mailto:report@iaccessabilityservices.com?subject=Report%20an%20Issue%20on%20the%20iAccessAbility%20Website&body=Hello iAccessAbility,%0D%0A%0D%0AI%20found%20a%20broken%20link,%20image,%20or%20format%20issue%20on%20the%20iAccessAbility%20website.%0D%0A%0D%0AProblem:%20(Please%20tell%20us%20what%20kind%20of%20issue%20needs%20to%20addressed%20[Broken%20Redirect%20Link,%20Broken%20Image%20Link,%20Broken%20Page.])%0D%0A%0D%0ALocation:%20(Please%20provide%20a%20link%20to%20the%20page%20that%20needs%20to%20be%20looked%20at.)%0D%0A%0D%0ADetails:%20(Please%20provide%20as%20many%20details%20about%20the%20issue%20you%20are%20facing%20and%20how%20we%20can%20reproduce%20it%20to%20resolve%20the%20problem.)" tabindex="3">here</a>&#46;</h3>
+            <br>
+            <!-- Delayed hint -->
+            <div id="delayed-paragraph-container"></div>
+            <div id="return-home-container"><h3><a class="link" href="https://iaccessabilityservices.com" tabindex="4">Pretend this never happened &#40;Return Home&#41;</a></h3></div>
+        </main>
+        <script src="https://iaccessabilityservices.com/navbar/navbar.js"></script>
+        <script src="https://iaccessabilityservices.com/javascript/redirects.js"></script>
+        <script src="https://iaccessabilityservices.com/javascript/screen-reader-support.js"></script>
+        <script>
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    const container = document.getElementById('delayed-paragraph-container');
+                    const paragraph = document.createElement('h3');
+                    paragraph.innerHTML = `Ever heard the phrase <em>hidden in plain sight</em>? Let’s just say the logo might be more than just a funny easter egg…`;
+                    container.appendChild(paragraph);
+                    container.classList.add('expanded');
+                }, 5000);
+            });
+        </script>
+    </body>
+</html>
