@@ -29,10 +29,63 @@
         <meta name="apple-mobile-web-app-title" content="Apple Confetti">
         <title>Apple Confetti</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://iaccessabilityservices.com/navbar/navbar.css">
         <link rel="manifest" href="/manifest.json">
     </head>
     <body>
+        <!-- Navigation -->
+        <div class="nav-container" data-role="header" data-position="fixed">
+            <!-- Normal Navigation -->
+            <nav id="main-navbar">
+                <!-- Top row: menu button on left, logo on right -->
+                <div class="mobile-header">
+                    <!-- iAccessAbility -->
+                    <div class="logo-container">
+                        <a href="https://iaccessabilityservices.com" aria-label="Home"><img class="link-logo" src="https://iaccessabilityservices.com/img/logo-colored.svg" alt="I Access Ability"></a>
+                        <a href="https://iaccessabilityservices.com" class="links"><h1 class="name" aria-label="I Access Ability">iAccessAbility</h1></a>
+                    </div>
+                    <!-- Mobile Menu Toggle Button -->
+                    <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">
+                        <span class="menu-icon-container">
+                            <span class="menu-line"></span>
+                            <span class="menu-line"></span>
+                        </span>
+                    </button>
+                </div>
+                <!-- Desktop Navigation -->
+                <ul class="desktop-nav">
+                    <li><a href="https://iaccessabilityservices.com"><img class="link-logo" src="https://iaccessabilityservices.com/img/logo-colored.svg" alt="I Access Ability"></a></li>
+                    <li><a href="https://iaccessabilityservices.com/news/">News</a></li>
+                    <li><a href="https://iaccessabilityservices.com/blog/">Blog</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/recommendations.html">Recommendations</a></li>
+                    <li><a href="https://support.iaccessabilityservices.com">Support</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/about.html">About</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/connect.html">Connect</a></li>
+                </ul>
+                <!-- Mobile Navigation (initially hidden) -->
+                <ul id="mobile-menu" class="mobile-nav" aria-hidden="true">
+                    <li><a href="https://iaccessabilityservices.com" tabindex="-1">Home</a></li>
+                    <li><a href="https://iaccessabilityservices.com/news/" tabindex="-1">News</a></li>
+                    <li><a href="https://iaccessabilityservices.com/blog/" tabindex="-1">Blog</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/recommendations.html" tabindex="-1">Recommendations</a></li>
+                    <li><a href="https://support.iaccessabilityservices.com" tabindex="-1">Support</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/about.html" tabindex="-1">About</a></li>
+                    <li><a href="https://iaccessabilityservices.com/html/connect.html" tabindex="-1">Connect</a></li>
+                </ul>
+            </nav>
+            <!-- PWA Navigation -->
+            <nav id="pwa-navbar" style="display: none;">
+                <!-- Top row: menu button on left, logo on right -->
+                <div class="mobile-header">
+                    <!-- iAccessAbility -->
+                    <div class="logo-container">
+                        <img class="link-logo" src="https://iaccessabilityservices.com/img/logo-colored.svg" alt="I Access Ability"><h1 class="name" aria-label="I Access Ability">iAccessAbility</h1>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <script src="script.js"></script>
+        <script src="https://iaccessabilityservices.com/navbar/navbar.js"></script>
         <script>
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('service-worker.js', { scope: '/' })
