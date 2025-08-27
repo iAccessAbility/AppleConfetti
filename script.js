@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainTitle.style.transform = 'translate(-50%, -50%)';
     mainTitle.style.fontFamily = 'Arial';
     mainTitle.style.color = 'white';
-    mainTitle.style.fontSize = '40px';
+    mainTitle.style.fontSize = '3em';
     body.appendChild(mainTitle);
     
     const secondaryText = document.createElement('p');
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     secondaryText.style.transform = 'translate(-50%, -50%)';
     secondaryText.style.fontFamily = 'Arial';
     secondaryText.style.color = 'white';
-    secondaryText.style.fontSize = '20px';
+    secondaryText.style.fontSize = '2em';
     body.appendChild(secondaryText);
     
     const footerText = document.createElement('footer');
