@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchstart', handleFirstInteraction);
 
     const mainTitle = document.createElement('h1');
-    mainTitle.textContent = "No Upcoming Events";
+    mainTitle.textContent = "Awe Dropping";
     mainTitle.id = 'mainTitle';
     mainTitle.style.position = 'fixed';
     mainTitle.style.display = 'block';
@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     mainTitle.style.transform = 'translate(-50%, -50%)';
     mainTitle.style.fontFamily = 'Arial';
     mainTitle.style.color = 'white';
-    mainTitle.style.fontSize = '3em';
+    mainTitle.style.fontSize = '2em';
     body.appendChild(mainTitle);
     
     const secondaryText = document.createElement('p');
-    secondaryText.textContent = "";
+    secondaryText.textContent = "September 9 10 AM PT";
     secondaryText.id = 'mainTitle';
     secondaryText.style.position = 'fixed';
     secondaryText.style.display = 'block';
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     secondaryText.style.transform = 'translate(-50%, -50%)';
     secondaryText.style.fontFamily = 'Arial';
     secondaryText.style.color = 'white';
-    secondaryText.style.fontSize = '2em';
+    secondaryText.style.fontSize = '1em';
     body.appendChild(secondaryText);
     
     const footerText = document.createElement('footer');
@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     footerText.style.position = 'fixed';
     footerText.style.top = '97%';
     footerText.style.textAlign = 'center';
+    footerText.style.right = '10px';
     footerText.style.fontFamily = 'Arial';
     footerText.style.color = '#ddd';
     body.appendChild(footerText);
