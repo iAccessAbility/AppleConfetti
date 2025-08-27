@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainTitle.style.display = 'block';
     mainTitle.style.top = '30%';
     mainTitle.style.left = '50%';
-    mainTitle.style.width = '90%';
+    mainTitle.style.width = '100%';
     mainTitle.style.textAlign = 'center';
     mainTitle.style.transform = 'translate(-50%, -50%)';
     mainTitle.style.fontFamily = 'Arial';
@@ -62,12 +62,12 @@ document.addEventListener('DOMContentLoaded', () => {
     secondaryText.style.display = 'block';
     secondaryText.style.top = '36%';
     secondaryText.style.left = '50%';
-    secondaryText.style.width = '90%';
+    secondaryText.style.width = '100%';
     secondaryText.style.textAlign = 'center';
     secondaryText.style.transform = 'translate(-50%, -50%)';
     secondaryText.style.fontFamily = 'Arial';
     secondaryText.style.color = 'white';
-    secondaryText.style.fontSize = '2em';
+    secondaryText.style.fontSize = '1.5em';
     body.appendChild(secondaryText);
     
     const footerText = document.createElement('footer');
