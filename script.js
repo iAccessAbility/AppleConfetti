@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchstart', handleFirstInteraction);
 
     const mainTitle = document.createElement('h1');
-    mainTitle.textContent = "No Upcoming Events";
+    mainTitle.textContent = "WWDC26";
     mainTitle.id = 'mainTitle';
     mainTitle.style.position = 'fixed';
     mainTitle.style.display = 'block';
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     body.appendChild(mainTitle);
     
     const secondaryText = document.createElement('p');
-    secondaryText.textContent = "";
+    secondaryText.textContent = "Jun. 8 - 12";
     secondaryText.id = 'mainTitle';
     secondaryText.style.position = 'fixed';
     secondaryText.style.display = 'block';
